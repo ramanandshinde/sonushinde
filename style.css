@@ -1,0 +1,26 @@
+
+h1{
+    color: beige;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+h2{
+    color: beige;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#sonu{
+    background-image: url(shinde.jpg);
+
+}
+h4{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+#don{
+    color: bisque;
+}
+.sonu{
+    color: rgb(238, 238, 238);
+    font-family: Arial, Helvetica, sans-serif;
+}
+b{
+    color: rgb(7, 3, 10);
+}
