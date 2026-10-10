@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TALLR — modern everyday essentials designed for taller men.">
+  <title>SIXPLUS— Built for the Taller Frame</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="announcement">
+    Designed for 6ft+ <span>·</span> Free shipping on prepaid orders <span>·</span> New drops arriving soon
+  </div>
+
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="TALLR home">SI<span>X</span>PLUS</a>
+
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#shop">Shop all</a>
+      <a href="#shop" data-filter-link="Jeans">Jeans</a>
+      <a href="#shop" data-filter-link="Joggers">Joggers</a>
+      <a href="#story">Our fit</a>
+    </nav>
+
+    <div class="actions">
+      <button class="icon-btn" id="searchToggle" type="button" aria-label="Open search">⌕</button>
+      <button class="icon-btn" id="accountBtn" type="button" aria-label="Account">♙</button>
+      <button class="icon-btn cart-button" id="cartToggle" type="button" aria-label="Open shopping bag">
+        ♧ <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="search-panel" id="searchPanel">
+    <label class="sr-only" for="searchInput">Search products</label>
+    <input id="searchInput" type="search" placeholder="Search jeans, joggers..." autocomplete="off">
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">The tall man's uniform · Drop 01</p>
+        <h1>FINALLY.<br>THE RIGHT<br>LENGTH.</h1>
+        <p class="hero-description">
+          Clothing built around taller proportions. Better length, considered fits,
+          and everyday essentials that actually fit your frame.
+        </p>
+        <a class="btn" href="#shop">Shop the collection <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="hero-image" role="img" aria-label="Fashion editorial featuring modern streetwear">
+        <div class="hero-tag">Built for 6ft and above</div>
+      </div>
+    </section>
+
+    <section class="benefits" aria-label="Our benefits">
+      <div class="benefit"><b aria-hidden="true">↕</b><span>Extended inseams</span></div>
+      <div class="benefit"><b aria-hidden="true">✳</b><span>Made for tall proportions</span></div>
+      <div class="benefit"><b aria-hidden="true">◇</b><span>Premium everyday fabric</span></div>
+      <div class="benefit"><b aria-hidden="true">→</b><span>Shipping across India</span></div>
+    </section>
+
+    <section class="section" id="shop">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">The essentials</p>
+          <h2>Shop the collection</h2>
+          <p class="section-subtitle">Everyday fits. Extra length. Zero compromise.</p>
+        </div>
+        <button class="text-link" type="button" id="viewAll">View all ↗</button>
+      </div>
+
+      <div class="filters" aria-label="Filter products">
+        <button class="filter active" type="button" data-filter="All" aria-pressed="true">All products</button>
+        <button class="filter" type="button" data-filter="Jeans" aria-pressed="false">Jeans</button>
+        <button class="filter" type="button" data-filter="Joggers" aria-pressed="false">Joggers</button>
+      </div>
+
+      <div class="grid" id="productGrid" aria-live="polite"></div>
+    </section>
+
+    <section class="promo">
+      <div class="promo-image" role="img" aria-label="Modern menswear editorial"></div>
+      <div class="promo-copy">
+        <p class="eyebrow">A fit that gets you</p>
+        <h2>YOUR HEIGHT.<br>YOUR RULES.</h2>
+        <p>
+          No more ankle-grazing hems or awkward proportions. Just thoughtfully
+          designed bottoms that move with you and fit how they should.
+        </p>
+        <a class="btn btn-light" href="#story">Discover the difference ↗</a>
+      </div>
+    </section>
+
+    <section class="section story" id="story">
+      <div class="story-visual">
+        <!-- <img
+          src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=80"
+          alt="Minimal fashion editorial"
+          loading="lazy"
+        > -->
+        <span class="story-stamp">Made for 6ft+</span>
+      </div>
+
+      <div class="story-copy">
+        <p class="eyebrow">Why SIXPLUS</p>
+        <h2>NOT JUST LONGER.<br>BETTER DESIGNED.</h2>
+        <p>
+          Standard sizing wasn't made for every body. We focus on the details
+          that matter to taller frames—from inseam and rise to knee placement
+          and overall proportions.
+        </p>
+
+        <div class="story-points">
+          <div class="point">
+            <strong>01 / Proportion</strong>
+            <span>Designed around a taller silhouette, not simply scaled up.</span>
+          </div>
+          <div class="point">
+            <strong>02 / Comfort</strong>
+            <span>Room to move, with fabric chosen for everyday wear.</span>
+          </div>
+          <div class="point">
+            <strong>03 / Versatility</strong>
+            <span>Easy-to-style essentials for daily rotation.</span>
+          </div>
+          <div class="point">
+            <strong>04 / Confidence</strong>
+            <span>Fits that let you focus on everything else.</span>
+          </div>
+        </div>
+
+        <a class="text-link" href="#shop">Find your fit ↗</a>
+      </div>
+    </section>
+
+    <section class="quote">
+      <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+      <blockquote>
+        “The best fit is the one you don't have to think about. That's what we're here to make.”
+      </blockquote>
+      <cite>Built for the taller frame</cite>
+    </section>
+
+    <section class="newsletter">
+      <div>
+        <h2>Get first dibs.</h2>
+        <p>New drops, restocks and updates. No noise, just the good stuff.</p>
+      </div>
+      <form class="signup" id="newsletterForm">
+        <label class="sr-only" for="newsletterEmail">Your email address</label>
+        <input id="newsletterEmail" type="email" required placeholder="Your email address">
+        <button type="submit">Sign me up ↗</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="brand" href="#" aria-label="TALLR home">SI<span>X</span>plus.</a>
+        <p>
+          Modern essentials for taller men. Thoughtfully designed for better
+          proportions, everyday comfort and confident style.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <strong>Explore</strong>
+        <a href="#shop">Shop all</a>
+        <a href="#shop" data-filter-link="Jeans">Jeans</a>
+        <a href="#shop" data-filter-link="Joggers">Joggers</a>
+        <a href="#story">Our fit</a>
+      </div>
+
+      <div class="footer-col">
+        <strong>Help</strong>
+        <a href="#footer" class="info-link">Shipping &amp; delivery</a>
+        <a href="#footer" class="info-link">Returns &amp; exchanges</a>
+        <a href="#footer" class="info-link">Track your order</a>
+        <a href="#footer" class="info-link">Contact us</a>
+      </div>
+
+      <div class="footer-col">
+        <strong>Follow along</strong>
+        <a href="#footer" class="info-link">Instagram ↗</a>
+        <a href="#story">Our story</a>
+        <a href="#footer" class="info-link">Privacy policy</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 SIXPLUS Studio. Demo storefront.</span>
+      <span>India · INR ₹</span>
+    </div>
+  </footer>
+
+  <div class="overlay" id="overlay"></div>
+
+  <aside class="drawer" id="cartDrawer" aria-label="Shopping bag" aria-hidden="true">
+    <div class="drawer-head">
+      <h3>Your bag (<span id="drawerCount">0</span>)</h3>
+      <button class="close" id="closeCart" type="button" aria-label="Close shopping bag">×</button>
+    </div>
+    <div class="cart-items" id="cartItems" aria-live="polite"></div>
+    <div class="cart-total">
+      <div><span>Subtotal</span><span id="subtotal">₹0</span></div>
+      <p>Shipping and taxes calculated at checkout. This demo storefront does not process real payments.</p>
+      <button class="btn checkout-btn" id="checkoutBtn" type="button">Continue to checkout ↗</button>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
