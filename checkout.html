@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Checkout — SIXPLUS</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --black: #111;
+  --white: #fff;
+  --grey: #777;
+  --border: #e5e5e5;
+  --background: #f8f8f6;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--black);
+  background: var(--white);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Announcement bar */
+
+.announcement {
+  background: #111;
+  color: #fff;
+  padding: 11px 15px;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Header */
+
+header {
+  height: 78px;
+  padding: 0 6%;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 27px;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+}
+
+.header-label {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: #555;
+}
+
+/* Main layout */
+
+.checkout-container {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 55px 30px 80px;
+}
+
+.breadcrumb {
+  font-size: 12px;
+  color: var(--grey);
+  margin-bottom: 24px;
+}
+
+.breadcrumb a:hover {
+  color: #000;
+}
+
+.page-title {
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 800;
+  letter-spacing: -2px;
+  margin-bottom: 12px;
+}
+
+.page-subtitle {
+  color: var(--grey);
+  font-size: 14px;
+  margin-bottom: 40px;
+}
+
+.checkout-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(300px, 0.8fr);
+  gap: 65px;
+  align-items: start;
+}
+
+/* Sections */
+
+.section {
+  margin-bottom: 40px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.step-number {
+  width: 29px;
+  height: 29px;
+  border: 1px solid #111;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+}
+
+.section-heading h2 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.section-description {
+  font-size: 12px;
+  color: var(--grey);
+  margin: -12px 0 22px 41px;
+}
+
+/* Form */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.form-group.full {
+  grid-column: 1 / -1;
+}
+
+label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 13px 14px;
+  background: #fff;
+  border: 1px solid #dcdcdc;
+  border-radius: 0;
+  outline: none;
+  font-family: inherit;
+  font-size: 13px;
+  color: #111;
+  transition: border-color 0.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #111;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #aaa;
+}
+
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.form-note {
+  font-size: 11px;
+  color: var(--grey);
+  margin-top: 8px;
+  line-height: 1.6;
+}
+
+/* Shipping address */
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+  font-size: 12px;
+}
+
+.checkbox-row input {
+  width: 16px;
+  min-height: auto;
+  height: 16px;
+  accent-color: #111;
+}
+
+/* Payment methods */
+
+.payment-options {
+  display: grid;
+  gap: 12px;
+}
+
+.payment-option {
+  border: 1px solid #dedede;
+  padding: 17px;
+  display: flex;
+  gap: 13px;
+  align-items: flex-start;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.payment-option:has(input:checked) {
+  border-color: #111;
+  background: #fafafa;
+}
+
+.payment-option input {
+  width: 16px;
+  min-height: auto;
+  height: 16px;
+  margin-top: 2px;
+  accent-color: #111;
+}
+
+.payment-content {
+  flex: 1;
+}
+
+.payment-title {
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.payment-description {
+  color: var(--grey);
+  font-size: 11px;
+  line-height: 1.6;
+  margin-top: 7px;
+}
+
+.payment-badge {
+  font-size: 9px;
+  background: #111;
+  color: #fff;
+  padding: 4px 6px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+/* Order summary */
+
+.order-summary {
+  background: var(--background);
+  padding: 28px;
+  position: sticky;
+  top: 20px;
+}
+
+.summary-heading {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 25px;
+}
+
+.product-list {
+  display: grid;
+  gap: 20px;
+}
+
+.product-item {
+  display: flex;
+  gap: 15px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e4e4e1;
+}
+
+.product-image {
+  width: 83px;
+  height: 100px;
+  flex-shrink: 0;
+  background: #e9e9e7;
+  object-fit: cover;
+}
+
+.product-details {
+  flex: 1;
+  padding-top: 3px;
+}
+
+.product-name {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.product-meta {
+  font-size: 11px;
+  color: var(--grey);
+  margin-top: 7px;
+}
+
+.product-price {
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.quantity-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+
+.quantity-controls button {
+  width: 28px;
+  height: 27px;
+  border: 0;
+  background: #fff;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.quantity-controls span {
+  min-width: 25px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.remove-button {
+  margin-top: 12px;
+  border: 0;
+  background: none;
+  text-decoration: underline;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+/* Coupon */
+
+.coupon {
+  display: flex;
+  gap: 8px;
+  margin: 25px 0;
+}
+
+.coupon input {
+  min-width: 0;
+  min-height: 43px;
+}
+
+.coupon button {
+  padding: 0 16px;
+  background: #fff;
+  border: 1px solid #111;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.coupon-message {
+  font-size: 11px;
+  margin-top: -15px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+/* Price summary */
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 17px;
+  font-size: 12px;
+}
+
+.price-row span:first-child {
+  color: #666;
+}
+
+.price-row.total {
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+  margin-top: 20px;
+  margin-bottom: 12px;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.price-row.total span:first-child {
+  color: #111;
+}
+
+.shipping-note {
+  font-size: 10px;
+  color: #777;
+  line-height: 1.7;
+  margin-bottom: 22px;
+}
+
+/* Place order */
+
+.place-order {
+  width: 100%;
+  min-height: 54px;
+  border: 1px solid #111;
+  background: #111;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.place-order:hover {
+  background: #333;
+}
+
+.place-order:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.secure-note {
+  text-align: center;
+  color: #777;
+  font-size: 10px;
+  margin-top: 15px;
+  line-height: 1.7;
+}
+
+/* Footer */
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 20px;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #777;
+}
+
+/* Success message */
+
+.success-message {
+  display: none;
+  padding: 25px;
+  margin-top: 25px;
+  background: #f0f7ef;
+  border: 1px solid #c8e2c4;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.success-message.show {
+  display: block;
+}
+
+/* Responsive */
+
+@media (max-width: 850px) {
+  .checkout-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .order-summary {
+    position: static;
+    grid-row: 1;
+  }
+
+  .checkout-container {
+    padding: 35px 20px 55px;
+  }
+
+  .header-label {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    height: 65px;
+    padding: 0 18px;
+  }
+
+  .logo {
+    font-size: 23px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .form-group.full {
+    grid-column: auto;
+  }
+
+  .order-summary {
+    padding: 20px;
+  }
+
+  .page-title {
+    letter-spacing: -1px;
+  }
+
+  .announcement {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="announcement">
+  DESIGNED FOR 6FT+ &nbsp; · &nbsp;
+  FREE SHIPPING ON PREPAID ORDERS
+</div>
+
+<header>
+  <a href="index.html" class="logo">SIXPLUS</a>
+  <div class="header-label">SECURE CHECKOUT &nbsp; 🔒</div>
+</header>
+
+<main class="checkout-container">
+
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    &nbsp; / &nbsp;
+    <a href="index.html#shop">Shopping Bag</a>
+    &nbsp; / &nbsp;
+    Checkout
+  </div>
+
+  <h1 class="page-title">CHECKOUT.</h1>
+
+  <p class="page-subtitle">
+    Almost yours. Enter your details to complete your order.
+  </p>
+
+  <form id="checkoutForm">
+
+    <div class="checkout-layout">
+
+      <!-- LEFT: CUSTOMER DETAILS -->
+
+      <div class="checkout-form">
+
+        <!-- Contact -->
+
+        <section class="section">
+
+          <div class="section-heading">
+            <span class="step-number">1</span>
+            <h2>Contact information</h2>
+          </div>
+
+          <div class="form-grid">
+
+            <div class="form-group full">
+              <label for="email">EMAIL ADDRESS *</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required
+              >
+            </div>
+
+            <div class="form-group full">
+              <label for="mobile">MOBILE NUMBER *</label>
+              <input
+                type="tel"
+                id="mobile"
+                name="mobile"
+                placeholder="10-digit mobile number"
+                inputmode="numeric"
+                pattern="[6-9][0-9]{9}"
+                maxlength="10"
+                autocomplete="tel-national"
+                title="Enter a valid 10-digit Indian mobile number"
+                required
+              >
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- Delivery -->
+
+        <section class="section">
+
+          <div class="section-heading">
+            <span class="step-number">2</span>
+            <h2>Delivery address</h2>
+          </div>
+
+          <p class="section-description">
+            Where should we deliver your SIXPLUS order?
+          </p>
+
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label for="firstName">FIRST NAME *</label>
+              <input
+                id="firstName"
+                name="firstName"
+                placeholder="First name"
+                autocomplete="given-name"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="lastName">LAST NAME *</label>
+              <input
+                id="lastName"
+                name="lastName"
+                placeholder="Last name"
+                autocomplete="family-name"
+                required
+              >
+            </div>
+
+            <div class="form-group full">
+              <label for="address">HOUSE / FLAT / BUILDING *</label>
+              <input
+                id="address"
+                name="address"
+                placeholder="House number and building name"
+                autocomplete="address-line1"
+                required
+              >
+            </div>
+
+            <div class="form-group full">
+              <label for="area">STREET / AREA / LOCALITY *</label>
+              <input
+                id="area"
+                name="area"
+                placeholder="Street, area or locality"
+                autocomplete="address-line2"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="pincode">PIN CODE *</label>
+              <input
+                type="text"
+                id="pincode"
+                name="pincode"
+                placeholder="6-digit PIN code"
+                inputmode="numeric"
+                pattern="[1-9][0-9]{5}"
+                maxlength="6"
+                autocomplete="postal-code"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="city">CITY *</label>
+              <input
+                id="city"
+                name="city"
+                placeholder="City"
+                autocomplete="address-level2"
+                required
+              >
+            </div>
+
+            <div class="form-group full">
+              <label for="state">STATE *</label>
+              <select
+                id="state"
+                name="state"
+                autocomplete="address-level1"
+                required
+              >
+                <option value="">Select state</option>
+                <option>Andhra Pradesh</option>
+                <option>Arunachal Pradesh</option>
+                <option>Assam</option>
+                <option>Bihar</option>
+                <option>Chhattisgarh</option>
+                <option>Goa</option>
+                <option>Gujarat</option>
+                <option>Haryana</option>
+                <option>Himachal Pradesh</option>
+                <option>Jharkhand</option>
+                <option>Karnataka</option>
+                <option>Kerala</option>
+                <option>Madhya Pradesh</option>
+                <option>Maharashtra</option>
+                <option>Manipur</option>
+                <option>Meghalaya</option>
+                <option>Mizoram</option>
+                <option>Nagaland</option>
+                <option>Odisha</option>
+                <option>Punjab</option>
+                <option>Rajasthan</option>
+                <option>Sikkim</option>
+                <option>Tamil Nadu</option>
+                <option>Telangana</option>
+                <option>Tripura</option>
+                <option>Uttar Pradesh</option>
+                <option>Uttarakhand</option>
+                <option>West Bengal</option>
+                <option>Delhi</option>
+                <option>Jammu and Kashmir</option>
+                <option>Ladakh</option>
+                <option>Puducherry</option>
+              </select>
+            </div>
+
+            <div class="form-group full">
+              <label for="landmark">LANDMARK (OPTIONAL)</label>
+              <input
+                id="landmark"
+                name="landmark"
+                placeholder="Nearby landmark"
+              >
+            </div>
+
+            <div class="form-group full">
+              <label for="instructions">
+                DELIVERY INSTRUCTIONS (OPTIONAL)
+              </label>
+              <textarea
+                id="instructions"
+                name="instructions"
+                placeholder="Any special instructions for delivery?"
+              ></textarea>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- Payment -->
+
+        <section class="section">
+
+          <div class="section-heading">
+            <span class="step-number">3</span>
+            <h2>Payment method</h2>
+          </div>
+
+          <p class="section-description">
+            Choose how you would like to pay.
+          </p>
+
+          <div class="payment-options">
+
+            <label class="payment-option">
+
+              <input
+                type="radio"
+                name="payment"
+                value="cod"
+                checked
+              >
+
+              <div class="payment-content">
+
+                <div class="payment-title">
+                  <span>Cash on Delivery</span>
+                  <span class="payment-badge">PAY LATER</span>
+                </div>
+
+                <p class="payment-description">
+                  Pay when your order arrives at your doorstep.
+                </p>
+
+              </div>
+
+            </label>
+
+            <label class="payment-option">
+
+              <input
+                type="radio"
+                name="payment"
+                value="upi"
+              >
+
+              <div class="payment-content">
+
+                <div class="payment-title">
+                  <span>UPI Payment</span>
+                  <span>UPI</span>
+                </div>
+
+                <p class="payment-description">
+                  Google Pay, PhonePe, Paytm and other UPI apps.
+                  Online payment requires a payment gateway.
+                </p>
+
+              </div>
+
+            </label>
+
+            <label class="payment-option">
+
+              <input
+                type="radio"
+                name="payment"
+                value="card"
+              >
+
+              <div class="payment-content">
+
+                <div class="payment-title">
+                  <span>Credit / Debit Card</span>
+                  <span>VISA · RuPay</span>
+                </div>
+
+                <p class="payment-description">
+                  Pay securely through a supported payment gateway.
+                </p>
+
+              </div>
+
+            </label>
+
+          </div>
+
+          <p class="form-note">
+            Online payments are not processed by this demo page.
+            A payment gateway must be integrated before accepting
+            real payments.
+          </p>
+
+        </section>
+
+      </div>
+
+      <!-- RIGHT: ORDER SUMMARY -->
+
+      <aside class="order-summary">
+
+        <h2 class="summary-heading">
+          YOUR ORDER
+          <span id="itemCount">(0)</span>
+        </h2>
+
+        <div class="product-list" id="productList"></div>
+
+        <!-- Coupon -->
+
+        <div class="coupon">
+
+          <input
+            type="text"
+            id="couponCode"
+            placeholder="Discount code"
+            aria-label="Discount code"
+          >
+
+          <button type="button" id="applyCoupon">
+            APPLY
+          </button>
+
+        </div>
+
+        <p class="coupon-message" id="couponMessage"></p>
+
+        <!-- Totals -->
+
+        <div class="price-row">
+          <span>Subtotal</span>
+          <span id="subtotal">₹0</span>
+        </div>
+
+        <div class="price-row">
+          <span>Shipping</span>
+          <span id="shipping">₹0</span>
+        </div>
+
+        <div class="price-row" id="discountRow" hidden>
+          <span>Discount</span>
+          <span id="discount">−₹0</span>
+        </div>
+
+        <div class="price-row total">
+          <span>Total</span>
+          <span id="total">₹0</span>
+        </div>
+
+        <p class="shipping-note">
+          Shipping is free on prepaid orders.
+          Cash on Delivery may have an additional fee.
+          Final delivery charges must be configured by the store.
+        </p>
+
+        <button type="submit" class="place-order" id="placeOrder">
+          PLACE ORDER &nbsp; →
+        </button>
+
+        <p class="secure-note">
+          🔒 YOUR INFORMATION IS USED FOR ORDER PROCESSING.<br>
+          PAYMENT IS NOT PROCESSED BY THIS DEMO.
+        </p>
+
+        <div class="success-message" id="successMessage"></div>
+
+      </aside>
+
+    </div>
+
+  </form>
+
+</main>
+
+<footer>
+  © 2026 SIXPLUS — BUILT FOR THE TALLER FRAME.
+</footer>
+
+<script>
+/*
+  DEMO CHECKOUT
+
+  This page uses localStorage for the cart.
+  It does not create a real order or process payments.
+*/
+
+const CART_KEY = "sixplusCart";
+
+let discountApplied = false;
+let discountAmount = 0;
+
+const money = amount =>
+  new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+    maximumFractionDigits: 0
+  }).format(amount);
+
+/*
+  Supports carts saved as:
+  [{ id, name, price, image, quantity }]
+  or [{ id, name, price, image, qty }]
+
+  Update CART_KEY above if your existing site uses
+  a different localStorage key.
+*/
+
+function getCart() {
+  try {
+    const stored = JSON.parse(localStorage.getItem(CART_KEY));
+
+    if (!Array.isArray(stored)) return [];
+
+    return stored.map(item => ({
+      ...item,
+      price: Number(item.price) || 0,
+      quantity: Math.max(
+        1,
+        Number(item.quantity ?? item.qty) || 1
+      )
+    }));
+  } catch (error) {
+    return [];
+  }
+}
+
+function saveCart(cart) {
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+}
+
+function getSubtotal(cart) {
+  return cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+}
+
+function renderCart() {
+  const cart = getCart();
+  const list = document.getElementById("productList");
+
+  list.innerHTML = "";
+
+  cart.forEach((item, index) => {
+    const product = document.createElement("div");
+    product.className = "product-item";
+
+    const img = document.createElement("img");
+    img.className = "product-image";
+    img.src = item.image || "";
+    img.alt = item.name || "Product";
+    img.loading = "lazy";
+
+    img.onerror = () => {
+      img.style.visibility = "hidden";
+    };
+
+    const details = document.createElement("div");
+    details.className = "product-details";
+
+    const name = document.createElement("div");
+    name.className = "product-name";
+    name.textContent = item.name || "Product";
+
+    const meta = document.createElement("div");
+    meta.className = "product-meta";
+    meta.textContent = item.category || "SIXPLUS Essentials";
+
+    const quantityRow = document.createElement("div");
+    quantityRow.className = "quantity-row";
+
+    const price = document.createElement("span");
+    price.className = "product-price";
+    price.textContent = money(item.price * item.quantity);
+
+    const controls = document.createElement("div");
+    controls.className = "quantity-controls";
+
+    const minus = document.createElement("button");
+    minus.type = "button";
+    minus.textContent = "−";
+    minus.setAttribute("aria-label", "Decrease quantity");
+
+    minus.addEventListener("click", () => {
+      const updated = getCart();
+
+      if (!updated[index]) return;
+
+      if (updated[index].quantity > 1) {
+        updated[index].quantity--;
+      } else {
+        updated.splice(index, 1);
+      }
+
+      saveCart(updated);
+      discountApplied = false;
+      discountAmount = 0;
+      renderCart();
+    });
+
+    const quantity = document.createElement("span");
+    quantity.textContent = item.quantity;
+
+    const plus = document.createElement("button");
+    plus.type = "button";
+    plus.textContent = "+";
+    plus.setAttribute("aria-label", "Increase quantity");
+
+    plus.addEventListener("click", () => {
+      const updated = getCart();
+
+      if (!updated[index]) return;
+
+      updated[index].quantity++;
+      saveCart(updated);
+
+      discountApplied = false;
+      discountAmount = 0;
+
+      renderCart();
+    });
+
+    controls.append(minus, quantity, plus);
+    quantityRow.append(price, controls);
+
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.className = "remove-button";
+    remove.textContent = "Remove";
+
+    remove.addEventListener("click", () => {
+      const updated = getCart();
+      updated.splice(index, 1);
+
+      saveCart(updated);
+
+      discountApplied = false;
+      discountAmount = 0;
+
+      renderCart();
+    });
+
+    details.append(name, meta, quantityRow, remove);
+    product.append(img, details);
+
+    list.appendChild(product);
+  });
+
+  document.getElementById("itemCount").textContent =
+    `(${cart.reduce((sum, item) => sum + item.quantity, 0)})`;
+
+  const subtotal = getSubtotal(cart);
+
+  // Demo shipping policy:
+  // Free shipping on prepaid orders.
+  // COD shipping is ₹49 for orders below ₹2,000.
+  const payment =
+    document.querySelector('input[name="payment"]:checked')?.value
+    || "cod";
+
+  const shipping =
+    payment === "cod" && subtotal > 0 && subtotal < 2000
+      ? 49
+      : 0;
+
+  discountAmount = discountApplied
+    ? Math.round(subtotal * 0.10)
+    : 0;
+
+  const total = Math.max(0, subtotal + shipping - discountAmount);
+
+  document.getElementById("subtotal").textContent = money(subtotal);
+  document.getElementById("shipping").textContent =
+    shipping === 0 ? "FREE" : money(shipping);
+
+  document.getElementById("discount").textContent =
+    "−" + money(discountAmount);
+
+  document.getElementById("discountRow").hidden =
+    discountAmount === 0;
+
+  document.getElementById("total").textContent = money(total);
+
+  document.getElementById("placeOrder").disabled =
+    cart.length === 0;
+
+  if (cart.length === 0) {
+    list.innerHTML = `
+      <p style="font-size:13px;line-height:1.8;color:#777">
+        Your bag is empty.<br>
+        <a href="index.html#shop"
+           style="color:#111;text-decoration:underline">
+          Continue shopping
+        </a>
+      </p>
+    `;
+  }
+}
+
+// Recalculate shipping when payment method changes.
+
+document.querySelectorAll('input[name="payment"]').forEach(input => {
+  input.addEventListener("change", renderCart);
+});
+
+// Demo discount code: SIX10
+
+document.getElementById("applyCoupon").addEventListener("click", () => {
+  const code = document
+    .getElementById("couponCode")
+    .value.trim()
+    .toUpperCase();
+
+  const message = document.getElementById("couponMessage");
+
+  if (code === "SIX10") {
+    if (getSubtotal(getCart()) === 0) {
+      message.textContent = "Add a product before applying a coupon.";
+      message.style.color = "#b00020";
+      return;
+    }
+
+    discountApplied = true;
+
+    message.textContent = "SIX10 applied — 10% demo discount.";
+    message.style.color = "#26733b";
+
+    renderCart();
+  } else {
+    discountApplied = false;
+
+    message.textContent = "Invalid discount code.";
+    message.style.color = "#b00020";
+
+    renderCart();
+  }
+});
+
+// Checkout form validation and demo order confirmation.
+
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzy-4MZsMmLk1_hMsXapUigEdAIKCXfGTOwUAXhVrbFdsWXD5XLx8LBJzQWChgvRVa9BQ/exec";
+
+document.getElementById("checkoutForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  const form = event.currentTarget;
+  if (!form.reportValidity()) return;
+
+  const cart = getCart();
+
+  if (cart.length === 0) {
+    alert("Your shopping bag is empty.");
+    return;
+  }
+
+  const selectedPayment = document.querySelector(
+    'input[name="payment"]:checked'
+  );
+
+  if (!selectedPayment || selectedPayment.value !== "cod") {
+    alert("Please choose Cash on Delivery.");
+    return;
+  }
+
+  const formData = new FormData(form);
+
+  const customer = {
+    email: formData.get("email") || "",
+    mobile: formData.get("mobile") || "",
+    firstName: formData.get("firstName") || "",
+    lastName: formData.get("lastName") || "",
+    address: formData.get("address") || "",
+    area: formData.get("area") || "",
+    pincode: formData.get("pincode") || "",
+    city: formData.get("city") || "",
+    state: formData.get("state") || "",
+    landmark: formData.get("landmark") || "",
+    instructions: formData.get("instructions") || ""
+  };
+
+  const subtotal = getSubtotal(cart);
+  const shipping = subtotal > 0 && subtotal < 2000 ? 49 : 0;
+  const total = Math.max(0, subtotal + shipping - discountAmount);
+  const orderId = "SIX-" + Date.now().toString().slice(-8);
+
+  const order = {
+    orderId,
+    customerName: `${customer.firstName} ${customer.lastName}`.trim(),
+    email: customer.email,
+    mobile: customer.mobile,
+    address: [
+      customer.address,
+      customer.area,
+      customer.city,
+      customer.state,
+      customer.pincode,
+      customer.landmark
+    ].filter(Boolean).join(", "),
+    items: cart,
+    payment: "COD",
+    total
+  };
+
+  const submitButton = form.querySelector('[type="submit"]');
+  if (submitButton) submitButton.disabled = true;
+
+  try {
+    await fetch(SCRIPT_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+      },
+      body: JSON.stringify(order),
+      mode: "no-cors"
+    });
+
+    const success = document.getElementById("successMessage");
+    success.replaceChildren();
+
+    const heading = document.createElement("strong");
+    heading.textContent = "Order request sent";
+
+    const message = document.createElement("p");
+    message.textContent =
+      `Reference: ${orderId}. Total: ${money(total)}.`;
+
+    const note = document.createElement("p");
+    note.textContent =
+      "Please verify that your order appears in our order records before treating it as confirmed.";
+
+    success.append(heading, message, note);
+    success.classList.add("show");
+    success.scrollIntoView({ behavior: "smooth", block: "center" });
+
+  } catch (error) {
+    alert("Could not send the order request. Please try again.");
+  } finally {
+    if (submitButton) submitButton.disabled = false;
+  }
+});
+
+
+
+renderCart();
+</script>
+
+</body>
+</html>
